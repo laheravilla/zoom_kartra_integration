@@ -1,3 +1,6 @@
+/*
+ * To be placed on Index and Meeting Page's
+*/
 var testTool = {
   b64EncodeUnicode: function (str) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
