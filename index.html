@@ -1,50 +1,36 @@
-<!DOCTYPE html>
-<body>
-    <style>
-        form#meeting_form > select {
-            visibility: hidden;
-            width: 0;
-        }
-    </style>
-    <form id="meeting_form">
-            <input type="hidden" 
-                name="display_name"
-                id="display_name"
-                value="Anonymous"
-                maxLength="100"
-            >
-            <input
-                type="hidden"
-                name="meeting_email"
-                id="meeting_email"
-                value=""
-                maxLength="32"
-            >
-            <select id="meeting_role">
-                <option value=0 selected="selected">Attendee</option>
-            </select>
-            <select id="meeting_china">
-                <option value=0 selected="selected">Global</option>
-            </select>
-            <select id="meeting_lang">
-                <option value="en-US">English</option>
-                <option value="de-DE">German Deutsch</option>
-                <option value="es-ES">Spanish Español</option>
-                <option value="fr-FR" selected="selected">French Français</option>
-                <option value="pt-PT">Portuguese Portuguese</option>
-                <option value="it-IT">Italian italiano</option>
-            </select>
-            <input type="submit" class="btn btn-primary" id="join_meeting"/>
-        </form>
-
-    <script src="https://source.zoom.us/1.9.1/lib/vendor/react.min.js"></script>
-    <script src="https://source.zoom.us/1.9.1/lib/vendor/react-dom.min.js"></script>
-    <script src="https://source.zoom.us/1.9.1/lib/vendor/redux.min.js"></script>
-    <script src="https://source.zoom.us/1.9.1/lib/vendor/redux-thunk.min.js"></script>
-    <script src="https://source.zoom.us/1.9.1/lib/vendor/lodash.min.js"></script>
-    <script src="https://source.zoom.us/zoom-meeting-1.9.1.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vConsole/3.3.4/vconsole.min.js"></script>
-    <script src="/index.js"></script>
-</body>
-</html>
+<style>
+    form#meeting_form > select {
+        visibility: hidden;
+        width: 0;
+    }
+</style>
+<form id="meeting_form">
+        <input type="hidden" 
+            name="display_name"
+            id="display_name"
+            value="Anonymous"
+            maxLength="100"
+        >
+        <input
+            type="hidden"
+            name="meeting_email"
+            id="meeting_email"
+            value=""
+            maxLength="32"
+        >
+        <select id="meeting_role">
+            <option value=0 selected="selected">Attendee</option>
+        </select>
+        <select id="meeting_china">
+            <option value=0 selected="selected">Global</option>
+        </select>
+        <select id="meeting_lang">
+            <option value="en-US">English</option>
+            <option value="de-DE">German Deutsch</option>
+            <option value="es-ES">Spanish Español</option>
+            <option value="fr-FR" selected="selected">French Français</option>
+            <option value="pt-PT">Portuguese Portuguese</option>
+            <option value="it-IT">Italian italiano</option>
+        </select>
+        <input type="submit" class="btn btn-primary" id="join_meeting"/>
+    </form>
