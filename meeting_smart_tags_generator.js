@@ -1,3 +1,6 @@
+/*
+ * To be placed on Meeting Page
+ */
 var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff;
 
         function addStyle(elem) {
