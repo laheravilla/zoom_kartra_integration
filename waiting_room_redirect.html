@@ -1,0 +1,12 @@
+<!--To be placed on Waiting Room Page's body-->
+<script>
+    var redirectTo = document.cookie
+      .split("; ")
+      .find(row => row.startsWith("zoomJoinUrl="))
+      .replace(/zoomJoinUrl=/, "");
+
+    document.cookie = "meetingStartsAt=" + document.querySelector(".countdown-section[data-timestamp]")
+      .dataset.timestamp;
+
+    document.querySelector(".countdown-section[data-redirect]").dataset.redirect = redirectTo;
+</script>
