@@ -46,7 +46,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
 
             setTimeout(function () {
                 // Remove custom style for notification bar with the offer CTA
-                document.getElementById("pagesCustomCSS").remove();
+                document.getElementById("yl-agency-style").remove();
             }, offerTimeWillShowUpIn * 60 * 1000);
 
             console.log("User arrived " + minutesDiff + " minutes late");
