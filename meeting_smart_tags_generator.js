@@ -1,8 +1,12 @@
 /*
  * To be placed on Meeting Page
  */
-var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff;
-
+var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff, offerTimeDefault, offerTimeWillShowUpIn;
+        vars = {
+                pageTrackingElemId: "yl_agency_dynamic_tracking",
+                offerBarClass: ".js-notification-bar"
+            };
+        
         function addStyle(elem) {
             elem.display = "none";
         }
@@ -18,22 +22,37 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-
+            offerTimeDefault = OFFER_TIME; // Minutes to show up
             pageTrackingIds = PAGE_TRACKING_IDS;
-            meetingStartsAt = document.cookie
+            meetingStartsAt = document.cookie // Meeting time
                 .split("; ")
                 .find(row => row.startsWith("meetingStartsAt="))
                 .replace(/meetingStartsAt=/, "");
 
-            arrivingTime = new Date();
+            arrivingTime = new Date(); // User arriving time to the room
             hoursDiff = (arrivingTime.getHours() - new Date(+meetingStartsAt * 1000).getHours()) * 60;
             minutesDiff = hoursDiff + (arrivingTime.getMinutes() - new Date(+meetingStartsAt * 1000).getMinutes());
+
+            // Calculate time in minutes for offer to show up if user gets connected later
+            offerTimeWillShowUpIn = offerTimeDefault;
+            if (minutesDiff > 1) {
+                offerTimeWillShowUpIn = offerTimeDefault - minutesDiff;
+            }
+            
+            document.querySelector(vars.offerBarClass).dataset.delayDuration = offerTimeWillShowUpIn * 60; // Update offer delay
+            document.querySelector(vars.offerBarClass).dataset.delayReocur = "every";
+
+            console.log("Offer will show up in " + offerTimeWillShowUpIn + " minutes");
+
+            setTimeout(function () {
+                // Remove custom style for notification bar with the offer CTA
+                document.getElementById("pagesCustomCSS").remove();
+            }, offerTimeWillShowUpIn * 60 * 1000);
+
             console.log("User arrived " + minutesDiff + " minutes late");
 
-            owner = OWNER_ID; // OWNER
-            vars = {
-                pageTrackingElemId: "yl_agency_dynamic_tracking",
-            };
+            owner = OWNER_ID; // OWNER's Karta account
+
             attrs = {
                 "class": "js_kartra_trackable_object",
                 "data-kt-type": "page_tracking",
