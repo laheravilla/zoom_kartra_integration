@@ -22,7 +22,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
         }
 
         document.addEventListener("DOMContentLoaded", function () {
-            offerTimeDefault = OFFER_TIME; // Minutes to show up
+            offerTimeDefault = OFFER_DELAY; // Minutes to show up
             pageTrackingIds = PAGE_TRACKING_IDS;
             meetingStartsAt = document.cookie // Meeting time
                 .split("; ")
