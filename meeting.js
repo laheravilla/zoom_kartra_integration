@@ -1,3 +1,7 @@
+
+/*
+ * To be placed on Meeting Page
+ */
 window.addEventListener('DOMContentLoaded', function(event) {
   console.log('DOM fully loaded and parsed');
   websdkready();
