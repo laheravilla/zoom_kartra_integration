@@ -1,3 +1,6 @@
+/*
+ * To be placed on Index Page
+ */
 window.addEventListener('DOMContentLoaded', function (e) {
   fetch(FB_ADDRESS)
     .then(function (response) {
