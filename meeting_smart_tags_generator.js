@@ -1,11 +1,8 @@
-/*
- * To be placed on Meeting Page
- */
 var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff, offerTimeDefault, offerTimeWillShowUpIn;
         vars = {
                 pageTrackingElemId: "yl_agency_dynamic_tracking",
                 offerBarClass: ".js-notification-bar"
-            };
+        };
         
         function addStyle(elem) {
             elem.display = "none";
@@ -22,6 +19,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
         }
 
         document.addEventListener("DOMContentLoaded", function () {
+            
             offerTimeDefault = OFFER_DELAY; // Minutes to show up
             pageTrackingIds = PAGE_TRACKING_IDS;
             meetingStartsAt = document.cookie // Meeting time
@@ -62,6 +60,16 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             divElement = document.createElement("div");
             divElement.id = vars.pageTrackingElemId;
 
+            document.querySelector(`${vars.offerBarClass} [data-component="button"] a.kartra_button1`).addEventListener("click", onClickOfferBtn);
+
+            function onClickOfferBtn () {              
+                attrs["data-kt-value"] = pageTrackingIds.interactedWithCTAOffer;
+                var div = document.createElement("div");
+                addAttributes(div, attrs);
+                addStyle(div);
+                insertIntoFooter(div);
+            }
+
             var counter;
             if (minutesDiff < CUSTOM_INTERVAL) {
                 counter = 0;
@@ -98,7 +106,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             addStyle(divElement);
             addAttributes(divElement, attrs);
             insertIntoFooter(divElement);
-        }
+        };
 
         function myCallback() {
             if (!window.location.href.match(/meeting/)) {
@@ -144,7 +152,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             console.log(`${timeRemained} min of meeting`);
         }
         
-  /**********************************************/
+        /********* End of Yurniel Lahera Agency **********/
 
         if (typeof window['kartra_tracking_loaded'] == "undefined") {
             window['kartra_tracking_loaded'] = true;
@@ -200,7 +208,6 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             }
 
             function load_tracking(container) {
-
                 myCallback();
 
                 if (typeof container === 'undefined') {
