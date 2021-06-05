@@ -94,11 +94,6 @@ function websdkready() {
       },
     });
 
-    function restartTracking() {
-      window['kartra_tracking_loaded'] = "undefined";
-      init_kartra_tracking();
-    }
-
     ZoomMtg.inMeetingServiceListener('onUserJoin', function (data) {
       console.log('inMeetingServiceListener onUserJoin', data);
     });
