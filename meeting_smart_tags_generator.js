@@ -1,4 +1,4 @@
-var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff, offerTimeDefault, offerTimeWillShowUpIn;
+        var intervalId, timeRemained, ktValue, divElement, vars, customInterval, owner, attrs, pageTrackingIds, meetingStartsAt, arrivingTime, hoursDiff, minutesDiff, offerTimeDefault, offerTimeWillShowUpIn;
         vars = {
                 pageTrackingElemId: "yl_agency_dynamic_tracking",
                 offerBarClass: ".js-notification-bar"
@@ -22,6 +22,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             
             offerTimeDefault = OFFER_DELAY; // Minutes to show up
             pageTrackingIds = PAGE_TRACKING_IDS;
+            customInterval = typeof CUSTOM_INTERVAL !== "undefined" ? CUSTOM_INTERVAL : 10; // If inexistent, then its value is 10 by default
             meetingStartsAt = document.cookie // Meeting time
                 .split("; ")
                 .find(row => row.startsWith("meetingStartsAt="))
@@ -71,28 +72,28 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             }
 
             var counter;
-            if (minutesDiff < CUSTOM_INTERVAL) {
+            if (minutesDiff < customInterval) {
                 counter = 0;
-            } else if (minutesDiff > CUSTOM_INTERVAL && minutesDiff < CUSTOM_INTERVAL * 2) {
-                counter = CUSTOM_INTERVAL;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 2 && minutesDiff < CUSTOM_INTERVAL * 3) {
-                counter = CUSTOM_INTERVAL * 2;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 3 && minutesDiff < CUSTOM_INTERVAL * 4) {
-                counter = CUSTOM_INTERVAL * 3;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 4 && minutesDiff < CUSTOM_INTERVAL * 5) {
-                counter = CUSTOM_INTERVAL * 4;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 5 && minutesDiff < CUSTOM_INTERVAL * 6) {
-                counter = CUSTOM_INTERVAL * 5;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 6 && minutesDiff < CUSTOM_INTERVAL * 7) {
-                counter = CUSTOM_INTERVAL * 6;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 7 && minutesDiff < CUSTOM_INTERVAL * 8) {
-                counter = CUSTOM_INTERVAL * 7;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 8 && minutesDiff < CUSTOM_INTERVAL * 9) {
-                counter = CUSTOM_INTERVAL * 8;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 9 && minutesDiff < CUSTOM_INTERVAL * 10) {
-                counter = CUSTOM_INTERVAL * 9;
-            } else if (minutesDiff > CUSTOM_INTERVAL * 10 && minutesDiff < CUSTOM_INTERVAL * 11) {
-                counter = CUSTOM_INTERVAL * 10;
+            } else if (minutesDiff > customInterval && minutesDiff < customInterval * 2) {
+                counter = customInterval;
+            } else if (minutesDiff > customInterval * 2 && minutesDiff < customInterval * 3) {
+                counter = customInterval * 2;
+            } else if (minutesDiff > customInterval * 3 && minutesDiff < customInterval * 4) {
+                counter = customInterval * 3;
+            } else if (minutesDiff > customInterval * 4 && minutesDiff < customInterval * 5) {
+                counter = customInterval * 4;
+            } else if (minutesDiff > customInterval * 5 && minutesDiff < customInterval * 6) {
+                counter = customInterval * 5;
+            } else if (minutesDiff > customInterval * 6 && minutesDiff < customInterval * 7) {
+                counter = customInterval * 6;
+            } else if (minutesDiff > customInterval * 7 && minutesDiff < customInterval * 8) {
+                counter = customInterval * 7;
+            } else if (minutesDiff > customInterval * 8 && minutesDiff < customInterval * 9) {
+                counter = customInterval * 8;
+            } else if (minutesDiff > customInterval * 9 && minutesDiff < customInterval * 10) {
+                counter = customInterval * 9;
+            } else if (minutesDiff > customInterval * 10 && minutesDiff < customInterval * 11) {
+                counter = customInterval * 10;
             }
             localStorage.setItem("counter", counter);
         });
@@ -118,28 +119,28 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
                 stopTagGeneration();
             }       
 
-            localStorage.setItem("counter", +localStorage.getItem("counter") + CUSTOM_INTERVAL);
+            localStorage.setItem("counter", +localStorage.getItem("counter") + customInterval);
             timeRemained = +localStorage.getItem("counter");
 
-            if (timeRemained === CUSTOM_INTERVAL) {
+            if (timeRemained === customInterval) {
                 ktValue = pageTrackingIds.firstTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 2) {
+            } else if (timeRemained === customInterval * 2) {
                 ktValue = pageTrackingIds.secondTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 3) {
+            } else if (timeRemained === customInterval * 3) {
                 ktValue = pageTrackingIds.thirdTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 4) {
+            } else if (timeRemained === customInterval * 4) {
                 ktValue = pageTrackingIds.fourthTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 5) {
+            } else if (timeRemained === customInterval * 5) {
                 ktValue = pageTrackingIds.fifthTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 6) {
+            } else if (timeRemained === customInterval * 6) {
                 ktValue = pageTrackingIds.sixthTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 7) {
+            } else if (timeRemained === customInterval * 7) {
                 ktValue = pageTrackingIds.seventhTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 8) {
+            } else if (timeRemained === customInterval * 8) {
                 ktValue = pageTrackingIds.eighthTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 9) {
+            } else if (timeRemained === customInterval * 9) {
                 ktValue = pageTrackingIds.ninethTenthOfTheTime;
-            } else if (timeRemained === CUSTOM_INTERVAL * 10) {
+            } else if (timeRemained === customInterval * 10) {
                 ktValue = pageTrackingIds.tenthTenthOfTheTime;
                 localStorage.removeItem("counter");
                 stopTagGeneration();
@@ -204,7 +205,7 @@ var intervalId, timeRemained, ktValue, divElement, vars, owner, attrs, pageTrack
             }
 
             function init_kartra_tracking() {
-                intervalId = setInterval(load_tracking, 1000  * 60 * CUSTOM_INTERVAL); // Generate tag every 10 minutes: 1000 ms * 60 sec * 10 min
+                intervalId = setInterval(load_tracking, 1000  * 60 * customInterval); // Generate tag every 10 minutes: 1000 ms * 60 sec * 10 min
             }
 
             function load_tracking(container) {
