@@ -74,9 +74,9 @@ function websdkready(d) {
     success: function (res) {
       meetingConfig.signature = res.result;
       meetingConfig.apiKey = d.pk;
-      var joinUrl = `${MEETING_ROOM_ADDRESS}?` + testTool.serialize(meetingConfig); // Redirect to waiting room
+      var joinUrl = `${MEETING_ROOM_LINK}?` + testTool.serialize(meetingConfig); // Redirect to waiting room
       document.cookie = `zoomJoinUrl=${joinUrl}`;
-      window.location = WAITING_ROOM_ADDRESS;
+      window.location = WAITING_ROOM_LINK;
     },
   });
 }
