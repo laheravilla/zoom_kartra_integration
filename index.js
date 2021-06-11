@@ -1,16 +1,6 @@
 /*
  * To be placed on Index Page
  */
-window.addEventListener('DOMContentLoaded', function (e) {
-  fetch(FB_ADDRESS)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (d) {
-      websdkready(d);
-    })
-});
-
 const vars = {
     displayName: "display_name",
     meetingEmail: "meeting_email",
@@ -18,6 +8,17 @@ const vars = {
     meetingNumber: "meeting_number",
     meetingLang: "meeting_lang",
 };
+
+window.addEventListener('DOMContentLoaded', function (e) {
+  fetch(FB_ADDRESS)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (d) {
+      document.getElementById(vars.meetingLang).value = navigator.language;
+      websdkready(d);
+    })
+});
 
 function websdkready(d) {
   var testTool = window.testTool;
