@@ -38,11 +38,11 @@ var testTool = {
   },
   getMeetingConfig: function () {
     return {
-      mn: parseInt(document.getElementById("meeting_number").value),
+      mn: parseInt(PERSONAL_ZOOM_MEETING_LINK.match(new RegExp("[0-9]{10}(?=\\?pwd)", "g"))[0]),
       name: testTool.b64EncodeUnicode(
         document.getElementById("display_name").value
       ),
-      pwd: document.getElementById("meeting_pwd").value,
+      pwd: PERSONAL_ZOOM_MEETING_LINK.match(new RegExp("pwd=[a-zA-Z0-9]+", "g"))[0].replace(/pwd=/, ""),
       role: parseInt(document.getElementById("meeting_role").value, 10),
       email: testTool.b64EncodeUnicode(
         document.getElementById("meeting_email").value
@@ -333,3 +333,4 @@ var testTool = {
 };
 
 window.testTool = testTool;
+
