@@ -6,19 +6,8 @@
     }
 </style>
 <form id="meeting_form">
-        <input type="hidden" 
-            name="display_name"
-            id="display_name"
-            value="Anonymous"
-            maxLength="100"
-        >
-        <input
-            type="hidden"
-            name="meeting_email"
-            id="meeting_email"
-            value=""
-            maxLength="32"
-        >
+        <input type="hidden" name="display_name" id="display_name" value="Anonymous" maxLength="100">
+        <input type="hidden" name="meeting_email" id="meeting_email" value="" maxLength="32">
         <select id="meeting_role">
             <option value=0 selected="selected">Attendee</option>
         </select>
@@ -33,5 +22,5 @@
             <option value="pt-PT">Portuguese Portuguese</option>
             <option value="it-IT">Italian italiano</option>
         </select>
-        <input type="submit" class="btn btn-primary" id="join_meeting"/>
+        <input type="hidden" id="join_meeting"/>
     </form>
