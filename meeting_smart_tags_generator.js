@@ -18,10 +18,23 @@
             document.querySelector("footer").insertAdjacentElement("beforeend", elem);
         }
 
+        function createTrackingContainer(attrKey = null, attrVal = null) {
+            attrs[attrKey] = attrVal;
+            var div = document.createElement("div");
+            addStyle(div);
+            addAttributes(div, attrs);
+            insertIntoFooter(div);
+        }
+
         document.addEventListener("DOMContentLoaded", function () {
             
             offerTimeDefault = OFFER_DELAY; // Minutes to show up
             pageTrackingIds = PAGE_TRACKING_IDS;
+            attrs = {
+                "class": "js_kartra_trackable_object",
+                "data-kt-type": "page_tracking",
+                "data-kt-owner": OWNER_ID,
+            };
             customInterval = typeof CUSTOM_INTERVAL !== "undefined" ? CUSTOM_INTERVAL : 10; // If inexistent, then its value is 10 by default
             meetingStartsAt = document.cookie // Meeting time
                 .split("; ")
@@ -46,29 +59,17 @@
             setTimeout(function () {
                 // Remove custom style for notification bar with the offer CTA
                 document.getElementById("yl-agency-style").remove();
+
+                // Track offer apparition
+                createTrackingContainer("data-kt-value", pageTrackingIds.offerShowsUp);
             }, offerTimeWillShowUpIn * 60 * 1000);
 
             console.log("User arrived " + minutesDiff + " minutes late");
 
-            owner = OWNER_ID; // OWNER's Karta account
-
-            attrs = {
-                "class": "js_kartra_trackable_object",
-                "data-kt-type": "page_tracking",
-                "data-kt-owner": owner,
-            };
-
-            divElement = document.createElement("div");
-            divElement.id = vars.pageTrackingElemId;
-
             document.querySelector(`${vars.offerBarClass} [data-component="button"] a.kartra_button1`).addEventListener("click", onClickOfferBtn);
 
             function onClickOfferBtn () {              
-                attrs["data-kt-value"] = pageTrackingIds.interactedWithCTAOffer;
-                var div = document.createElement("div");
-                addAttributes(div, attrs);
-                addStyle(div);
-                insertIntoFooter(div);
+                createTrackingContainer("data-kt-value", pageTrackingIds.interactedWithCTAOffer);
             }
 
             var counter;
@@ -104,6 +105,8 @@
         }
 
         window.onload = function () {
+            divElement = document.createElement("div");
+            divElement.id = vars.pageTrackingElemId;
             addStyle(divElement);
             addAttributes(divElement, attrs);
             insertIntoFooter(divElement);
@@ -123,25 +126,25 @@
             timeRemained = +localStorage.getItem("counter");
 
             if (timeRemained === customInterval) {
-                ktValue = pageTrackingIds.firstTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringFirstPart;
             } else if (timeRemained === customInterval * 2) {
-                ktValue = pageTrackingIds.secondTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringSecondPart;
             } else if (timeRemained === customInterval * 3) {
-                ktValue = pageTrackingIds.thirdTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringThirdPart;
             } else if (timeRemained === customInterval * 4) {
-                ktValue = pageTrackingIds.fourthTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringFourthPart;
             } else if (timeRemained === customInterval * 5) {
-                ktValue = pageTrackingIds.fifthTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringFifthPart;
             } else if (timeRemained === customInterval * 6) {
-                ktValue = pageTrackingIds.sixthTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringSixthPart;
             } else if (timeRemained === customInterval * 7) {
-                ktValue = pageTrackingIds.seventhTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringSeventhPart;
             } else if (timeRemained === customInterval * 8) {
-                ktValue = pageTrackingIds.eighthTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringEighthPart;
             } else if (timeRemained === customInterval * 9) {
-                ktValue = pageTrackingIds.ninethTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringNinthParte;
             } else if (timeRemained === customInterval * 10) {
-                ktValue = pageTrackingIds.tenthTenthOfTheTime;
+                ktValue = pageTrackingIds.presentDuringTenthPart;
                 localStorage.removeItem("counter");
                 stopTagGeneration();
             } else {
@@ -205,6 +208,7 @@
             }
 
             function init_kartra_tracking() {
+                createTrackingContainer("data-kt-value", pageTrackingIds.enteredConferenceRoom);
                 intervalId = setInterval(load_tracking, 1000  * 60 * customInterval); // Generate tag every 10 minutes: 1000 ms * 60 sec * 10 min
             }
 
@@ -326,7 +330,6 @@
                 } else {
                     deviceType = 'desktop';
                 }
-
                 return deviceType;
             }
         }
