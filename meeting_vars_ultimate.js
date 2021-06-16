@@ -1,4 +1,4 @@
-<!--To be placed on Meeting Page's body-->
+// To be placed on Meeting Page's body
 
 const OWNER_ID = "MISSING VALUE";
 const CUSTOM_INTERVAL = 10;
